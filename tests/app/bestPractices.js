@@ -9,7 +9,14 @@ define([
   describe('best practices', function(){
     it('you should avoid global variables', function() {
       answers.globals();
-      expect(window.myObject).not.to.be.ok;
+
+      if (typeof window === 'undefined') {
+        // node.js 'npm test'
+        expect(global.myObject).not.to.be.ok;
+      } else {
+        // browser
+        expect(window.myObject).not.to.be.ok;
+      }
     });
 
     it('you should declare functions safely', function() {
