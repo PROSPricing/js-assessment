@@ -22,7 +22,7 @@ define([
         console = {};
       }
 
-      console.log = function (val) {
+      console.add = function (val) {
         nums.push(val);
       };
     });
@@ -32,11 +32,15 @@ define([
       answers.count(1, 5);
 
       setTimeout(function () {
+
+        console.log(nums);
+
         expect(nums.length > 1).to.be.ok;
         expect(nums.length < 5).to.be.ok;
       }, 200);
 
       setTimeout(function () {
+          //alert(nums[1]);
         expect(nums.length).to.eql(5);
         expect(nums[0]).to.eql(1);
         expect(nums[4]).to.eql(5);

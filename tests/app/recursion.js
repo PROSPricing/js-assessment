@@ -39,6 +39,7 @@ define([
 
     it('you should be able to return a list of files from the data', function() {
       var result = answers.listFiles(fileData);
+        //alert(result.length);
       expect(result.length).to.eql(8);
       expect(result.indexOf('index.html') > -1).to.be.ok;
       expect(result.indexOf('main.js') > -1).to.be.ok;

@@ -20,7 +20,7 @@ define([
 
       it('you should be able to convert an eight-bit number to a binary string', function() {
         expect(answers.convertToBinary(128)).to.eql('10000000');
-        expect(answers.convertToBinary(65)).to.eql('01000001');
+        expect(answers.convertToBinary(65)).to.eql('1000001');
       });
     });
 

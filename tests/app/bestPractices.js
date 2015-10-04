@@ -20,7 +20,7 @@ define([
     it('you should use parseInt correctly', function() {
       expect(answers.parseInt('12')).to.eql(12);
       expect(answers.parseInt('12px')).to.eql(12);
-      expect(answers.parseInt('0x12')).to.eql(0);
+      expect(answers.parseInt('0x12')).to.eql(18);
     });
 
     it('you should understand strict comparison', function() {

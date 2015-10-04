@@ -12,7 +12,9 @@ define([
       var total = 2;
 
       function finish(done) {
-        if (++finished === total) { done(); }
+        if (++finished === total) {
+            done();
+        }
       }
 
       answers.async(true).then(function(result) {
