@@ -22,7 +22,7 @@ define([
       expect(answers.fizzBuzz(3)).to.eql('fizz');
       expect(answers.fizzBuzz(6)).to.eql('fizz');
       expect(answers.fizzBuzz(num * 3)).to.eql('fizz');
-
+      //
       expect(answers.fizzBuzz(5)).to.eql('buzz');
       expect(answers.fizzBuzz(10)).to.eql('buzz');
       expect(answers.fizzBuzz(num * 5)).to.eql('buzz');

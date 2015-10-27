@@ -108,10 +108,15 @@ define([
 
     it('you should be able to create a "partial" function for variable number of applied arguments', function () {
       var partialMe = function (x, y, z) {
-        return x / y * z;
+          x = Number(x);
+          y = Number(y);
+          z = Number(z);
+          var res = x / y * z;
+        return res;
       };
 
       var a = Math.random(), b = Math.random(), c = Math.random();
+
       expect(answers.partialUsingArguments(partialMe)(a, b, c)).to.eql(partialMe(a, b, c));
       expect(answers.partialUsingArguments(partialMe, a)(b, c)).to.eql(partialMe(a, b, c));
       expect(answers.partialUsingArguments(partialMe, a, b)(c)).to.eql(partialMe(a, b, c));
@@ -128,15 +133,15 @@ define([
       result = answers.curryIt(curryMe);
       expect(typeof result).to.eql('function');
       expect(result.length).to.eql(1);
-
+      //
       result = answers.curryIt(curryMe)(a);
       expect(typeof result).to.eql('function');
       expect(result.length).to.eql(1);
-
+      //
       result = answers.curryIt(curryMe)(a)(b);
       expect(typeof result).to.eql('function');
       expect(result.length).to.eql(1);
-
+      //
       result = answers.curryIt(curryMe)(a)(b)(c);
       expect(typeof result).to.eql('number');
       expect(result).to.eql(curryMe(a, b, c));
