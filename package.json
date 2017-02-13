@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "node bin/serve",
-    "test": "./node_modules/mocha/bin/mocha -R spec tests/runner.js"
+    "test": "node mocha.js"
   },
   "bin" : "bin/serve",
   "bugs" : {
