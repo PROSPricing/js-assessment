@@ -18,21 +18,21 @@ recursionAnswers = {
    */
   listFiles: function listFiles(data, dirName) {
     let files = [];
-
-    function checkAllDir(obj) {
-        files = files.concat(obj.files);
-        obj.subDirs.length > 0 && obj.subDirs.forEach(dir => checkAllDir(dir));
-    }
+    let areAllowed = [];
 
     function checkDir(obj, dirName) {
-        // Small hack for correct results, sorry about that
-        if (obj.dirName === dirName || obj.dirName === 'vendor') {
+        if (dirName) {
+            if (obj.dirName === dirName || areAllowed.includes(obj.dirName)) {
+                obj.subDirs.forEach(dir => areAllowed.push(dir.dirName));
+                files = files.concat(obj.files);
+            }
+        }else {
             files = files.concat(obj.files);
         }
-        obj.subDirs.length > 0 && obj.subDirs.forEach(dir => checkDir(dir, dirName))
+        obj.subDirs.length > 0 && obj.subDirs.forEach(dir => checkDir(dir, dirName));
     }
 
-    dirName ? checkDir(data, dirName) : checkAllDir(data);
+    checkDir(data, dirName);
 
     return files;
   },
