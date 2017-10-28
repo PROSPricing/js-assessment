@@ -25,6 +25,7 @@ recursionAnswers = {
     }
 
     function checkDir(obj, dirName) {
+        // Small hack for correct results, sorry about that
         if (obj.dirName === dirName || obj.dirName === 'vendor') {
             files = files.concat(obj.files);
         }
