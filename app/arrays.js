@@ -34,7 +34,7 @@ arraysAnswers = {
 
   /**
    * Modify arr with the same items as arr, excluding item 
-   * This function was added by me :)  
+   * (This function was added by me in order to pass the test) 
    * 
    * @param {Number[]} arr - An array of numbers
    * @param {Number} item - A number to be excluded from the new array
