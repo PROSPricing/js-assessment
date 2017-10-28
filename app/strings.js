@@ -10,7 +10,29 @@ stringsAnswers = {
    * @returns {String} A string with no more than amount number of repeated letters.
    */
   reduceString: function reduceString(str, amount) {
-    
+    let duplicates = [];
+    let reduced = str;
+
+    const letterArr = Array.from(str).filter(letter => {
+        if (duplicates.includes(letter)) return false;
+        duplicates.push(letter);
+        return true;
+    });
+
+    letterArr.forEach(letter => {
+        let regex = new RegExp(`${letter}{${amount}}`);
+        let regexReplace = new RegExp(`${letter}+`);
+        let replacer = [];
+        let count = 0;
+        while(count < amount) {
+            replacer.push(letter);
+            count++;
+        }
+        replacer = replacer.join('');
+        if (regex.test(str)) reduced = reduced.replace(regexReplace, replacer);
+    });
+
+    return reduced;
   },
 
   /**
