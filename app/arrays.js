@@ -8,6 +8,7 @@ arraysAnswers = {
    */
   indexOf: function indexOf(arr, item) {
     // Implement a function, that returns the 0 based index of an element in an array.
+    return arr.indexOf(item);
   },
 
   /**
@@ -17,7 +18,7 @@ arraysAnswers = {
    * @returns {Number} The numerical sum of all items in arr.
    */
   sum: function sum(arr) {
-
+    return arr.reduce((total, item) => total + item);
   },
 
   /**
@@ -28,7 +29,20 @@ arraysAnswers = {
    * @returns {Number[]} A new array containing all numbers from arr except item.
    */
   remove: function remove(arr, item) {
+    return arr.filter(el => el != item);
+  },
 
+  /**
+   * Modify arr with the same items as arr, excluding item 
+   * (This function was added by me in order to pass the test) 
+   * 
+   * @param {Number[]} arr - An array of numbers
+   * @param {Number} item - A number to be excluded from the new array
+   * @returns {Number[]} A new array containing all numbers from arr except item.
+   */
+  removeWithoutCopy: function removeWithoutCopy(arr, item) {
+    [...arr].forEach(el => el === item && arr.splice(arr.indexOf(el), 1));
+    return arr;
   },
 
   /**
@@ -39,7 +53,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with item appended.
    */
   append: function append(arr, item) {
-
+    return arr.concat(item)
   },
 
   /**
@@ -49,7 +63,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the last element removed..
    */
   truncate: function truncate(arr) {
-
+    return arr.slice(0, -1);
   },
 
   /**
@@ -60,7 +74,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the first element item added
    */
   prepend: function prepend(arr, item) {
-
+    return [item, ...arr];
   },
 
 
@@ -71,7 +85,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the first element item removed.
    */
   curtail: function curtail(arr) {
-
+    return arr.slice(1);
   },
 
   /**
@@ -82,7 +96,7 @@ arraysAnswers = {
    * @returns {Number[]} A new array, with elements from arr1 and arr2 in that order.
    */
   concat: function concat(arr1, arr2) {
-
+    return [...arr1, ...arr2];
   },
 
   /**
@@ -94,7 +108,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the number item inserted at position index.
    */
   insert: function insert(arr, item, index) {
-
+    return [...arr.slice(0, index), item, ...arr.slice(index)];
   },
 
   /**
@@ -105,7 +119,7 @@ arraysAnswers = {
    * @returns {Number} The count of the number of times the number item appeared in arr.
    */
   count: function count(arr, item) {
-
+    return arr.reduce((total, el) => item === el ? total + 1 : total, 0);
   },
 
   /**
@@ -115,7 +129,11 @@ arraysAnswers = {
    * @returns {Number[]} An array of numbers that appear in arr more than once.
    */
   duplicates: function duplicates(arr) {
-
+    let numbers = [];
+    return arr.reduce((total, item) => {
+        !numbers.includes(item) ? numbers.push(item) : !total.includes(item) && total.push(item);
+        return total;
+    }, []);
   },
 
   /**
@@ -125,7 +143,7 @@ arraysAnswers = {
    * @returns {Number[]} A new array of numbers that contains the elements of arr squared.
    */
   square: function square(arr) {
-
+    return arr.map(el => el ** 2);
   },
 
   /**
@@ -136,6 +154,9 @@ arraysAnswers = {
    * @returns {Number[]} A new array of numbers which represent the indices of target in arr.
    */
   findAllOccurrences: function findAllOccurrences(arr, target) {
-
+    return arr.reduce((indices, item) => {
+        item === target && indices.push(arr.indexOf(item, indices.length > 0 ? indices[indices.length - 1] + 1 : 0));
+        return indices;
+    }, []);
   },
 };
